@@ -78,4 +78,4 @@ require (
 
 go 1.17
 
-replace github.com/manicminer/hamilton => github.com/o11n/hamilton v0.40.2-0.20220217143703-8395e584f1c4
+replace github.com/manicminer/hamilton => github.com/o11n/hamilton v0.40.2-0.20220223160839-c750ea366236

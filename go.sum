@@ -338,6 +338,8 @@ github.com/nsf/jsondiff v0.0.0-20200515183724-f29ed568f4ce h1:RPclfga2SEJmgMmz2k
 github.com/nsf/jsondiff v0.0.0-20200515183724-f29ed568f4ce/go.mod h1:uFMI8w+ref4v2r9jz+c9i1IfIttS/OkmLfrk1jne5hs=
 github.com/o11n/hamilton v0.40.2-0.20220217143703-8395e584f1c4 h1:ai0wzt2ne+aHdBZ6ibAKODjMf6FTwgbvpxf2sp4kW3c=
 github.com/o11n/hamilton v0.40.2-0.20220217143703-8395e584f1c4/go.mod h1:IOYn2Dc9SUiZ7Ryw6c8Ay795vPPMnrCZe3MktS447dc=
+github.com/o11n/hamilton v0.40.2-0.20220223160839-c750ea366236 h1:B69a34r+rzT/tir3/JPQ9XGh1DSuEDwR2okVH+nFRC8=
+github.com/o11n/hamilton v0.40.2-0.20220223160839-c750ea366236/go.mod h1:IOYn2Dc9SUiZ7Ryw6c8Ay795vPPMnrCZe3MktS447dc=
 github.com/oklog/run v1.0.0/go.mod h1:dlhp/R75TPv97u0XWUtDeV/lRKWPKSdTuV0TZvrmrQA=
 github.com/oklog/run v1.1.0 h1:GEenZ1cK0+q0+wsJew9qUg/DyD8k3JzYsZAi5gYi2mA=
 github.com/oklog/run v1.1.0/go.mod h1:sVPdnTZT1zYwAJeCMu2Th4T21pA3FPOQRfWjQlk7DVU=
