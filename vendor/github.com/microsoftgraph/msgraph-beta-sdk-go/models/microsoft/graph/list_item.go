@@ -1,0 +1,307 @@
+package graph
+
+import (
+    i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55 "github.com/microsoft/kiota/abstractions/go/serialization"
+)
+
+// ListItem 
+type ListItem struct {
+    BaseItem
+    // The list of recent activities that took place on this item.
+    activities []ItemActivityOLD;
+    // Analytics about the view activities that took place on this item.
+    analytics *ItemAnalytics;
+    // The content type of this list item
+    contentType *ContentTypeInfo;
+    // 
+    deleted *Deleted;
+    // For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+    driveItem *DriveItem;
+    // The values of the columns set on this list item.
+    fields *FieldValueSet;
+    // Returns identifiers useful for SharePoint REST compatibility. Read-only.
+    sharepointIds *SharepointIds;
+    // The list of previous versions of the list item.
+    versions []ListItemVersion;
+}
+// NewListItem instantiates a new listItem and sets the default values.
+func NewListItem()(*ListItem) {
+    m := &ListItem{
+        BaseItem: *NewBaseItem(),
+    }
+    return m
+}
+// GetActivities gets the activities property value. The list of recent activities that took place on this item.
+func (m *ListItem) GetActivities()([]ItemActivityOLD) {
+    if m == nil {
+        return nil
+    } else {
+        return m.activities
+    }
+}
+// GetAnalytics gets the analytics property value. Analytics about the view activities that took place on this item.
+func (m *ListItem) GetAnalytics()(*ItemAnalytics) {
+    if m == nil {
+        return nil
+    } else {
+        return m.analytics
+    }
+}
+// GetContentType gets the contentType property value. The content type of this list item
+func (m *ListItem) GetContentType()(*ContentTypeInfo) {
+    if m == nil {
+        return nil
+    } else {
+        return m.contentType
+    }
+}
+// GetDeleted gets the deleted property value. 
+func (m *ListItem) GetDeleted()(*Deleted) {
+    if m == nil {
+        return nil
+    } else {
+        return m.deleted
+    }
+}
+// GetDriveItem gets the driveItem property value. For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+func (m *ListItem) GetDriveItem()(*DriveItem) {
+    if m == nil {
+        return nil
+    } else {
+        return m.driveItem
+    }
+}
+// GetFields gets the fields property value. The values of the columns set on this list item.
+func (m *ListItem) GetFields()(*FieldValueSet) {
+    if m == nil {
+        return nil
+    } else {
+        return m.fields
+    }
+}
+// GetSharepointIds gets the sharepointIds property value. Returns identifiers useful for SharePoint REST compatibility. Read-only.
+func (m *ListItem) GetSharepointIds()(*SharepointIds) {
+    if m == nil {
+        return nil
+    } else {
+        return m.sharepointIds
+    }
+}
+// GetVersions gets the versions property value. The list of previous versions of the list item.
+func (m *ListItem) GetVersions()([]ListItemVersion) {
+    if m == nil {
+        return nil
+    } else {
+        return m.versions
+    }
+}
+// GetFieldDeserializers the deserialization information for the current model
+func (m *ListItem) GetFieldDeserializers()(map[string]func(interface{}, i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode)(error)) {
+    res := m.BaseItem.GetFieldDeserializers()
+    res["activities"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewItemActivityOLD() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ItemActivityOLD, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*ItemActivityOLD))
+            }
+            m.SetActivities(res)
+        }
+        return nil
+    }
+    res["analytics"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetObjectValue(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewItemAnalytics() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAnalytics(val.(*ItemAnalytics))
+        }
+        return nil
+    }
+    res["contentType"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetObjectValue(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewContentTypeInfo() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetContentType(val.(*ContentTypeInfo))
+        }
+        return nil
+    }
+    res["deleted"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetObjectValue(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewDeleted() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeleted(val.(*Deleted))
+        }
+        return nil
+    }
+    res["driveItem"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetObjectValue(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewDriveItem() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDriveItem(val.(*DriveItem))
+        }
+        return nil
+    }
+    res["fields"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetObjectValue(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewFieldValueSet() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFields(val.(*FieldValueSet))
+        }
+        return nil
+    }
+    res["sharepointIds"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetObjectValue(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewSharepointIds() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSharepointIds(val.(*SharepointIds))
+        }
+        return nil
+    }
+    res["versions"] = func (o interface{}, n i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(func () i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable { return NewListItemVersion() })
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ListItemVersion, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*ListItemVersion))
+            }
+            m.SetVersions(res)
+        }
+        return nil
+    }
+    return res
+}
+func (m *ListItem) IsNil()(bool) {
+    return m == nil
+}
+// Serialize serializes information the current object
+func (m *ListItem) Serialize(writer i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.SerializationWriter)(error) {
+    err := m.BaseItem.Serialize(writer)
+    if err != nil {
+        return err
+    }
+    if m.GetActivities() != nil {
+        cast := make([]i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable, len(m.GetActivities()))
+        for i, v := range m.GetActivities() {
+            temp := v
+            cast[i] = i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable(&temp)
+        }
+        err = writer.WriteCollectionOfObjectValues("activities", cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("analytics", m.GetAnalytics())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("contentType", m.GetContentType())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("deleted", m.GetDeleted())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("driveItem", m.GetDriveItem())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("fields", m.GetFields())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("sharepointIds", m.GetSharepointIds())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetVersions() != nil {
+        cast := make([]i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable, len(m.GetVersions()))
+        for i, v := range m.GetVersions() {
+            temp := v
+            cast[i] = i04eb5309aeaafadd28374d79c8471df9b267510b4dc2e3144c378c50f6fd7b55.Parsable(&temp)
+        }
+        err = writer.WriteCollectionOfObjectValues("versions", cast)
+        if err != nil {
+            return err
+        }
+    }
+    return nil
+}
+// SetActivities sets the activities property value. The list of recent activities that took place on this item.
+func (m *ListItem) SetActivities(value []ItemActivityOLD)() {
+    if m != nil {
+        m.activities = value
+    }
+}
+// SetAnalytics sets the analytics property value. Analytics about the view activities that took place on this item.
+func (m *ListItem) SetAnalytics(value *ItemAnalytics)() {
+    if m != nil {
+        m.analytics = value
+    }
+}
+// SetContentType sets the contentType property value. The content type of this list item
+func (m *ListItem) SetContentType(value *ContentTypeInfo)() {
+    if m != nil {
+        m.contentType = value
+    }
+}
+// SetDeleted sets the deleted property value. 
+func (m *ListItem) SetDeleted(value *Deleted)() {
+    if m != nil {
+        m.deleted = value
+    }
+}
+// SetDriveItem sets the driveItem property value. For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+func (m *ListItem) SetDriveItem(value *DriveItem)() {
+    if m != nil {
+        m.driveItem = value
+    }
+}
+// SetFields sets the fields property value. The values of the columns set on this list item.
+func (m *ListItem) SetFields(value *FieldValueSet)() {
+    if m != nil {
+        m.fields = value
+    }
+}
+// SetSharepointIds sets the sharepointIds property value. Returns identifiers useful for SharePoint REST compatibility. Read-only.
+func (m *ListItem) SetSharepointIds(value *SharepointIds)() {
+    if m != nil {
+        m.sharepointIds = value
+    }
+}
+// SetVersions sets the versions property value. The list of previous versions of the list item.
+func (m *ListItem) SetVersions(value []ListItemVersion)() {
+    if m != nil {
+        m.versions = value
+    }
+}

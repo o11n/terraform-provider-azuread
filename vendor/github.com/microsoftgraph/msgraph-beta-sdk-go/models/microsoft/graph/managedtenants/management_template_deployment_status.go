@@ -1,0 +1,59 @@
+package managedtenants
+import (
+    "strings"
+    "errors"
+)
+// 
+type ManagementTemplateDeploymentStatus int
+
+const (
+    TOADDRESS_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS ManagementTemplateDeploymentStatus = iota
+    COMPLETED_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    ERROR_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    TIMEOUT_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    INPROGRESS_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    PLANNED_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    RESOLVEDBY3RDPARTY_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    RESOLVEDTHROUGHALTERNATEMITIGATION_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    RISKACCEPTED_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    UNKNOWNFUTUREVALUE_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+)
+
+func (i ManagementTemplateDeploymentStatus) String() string {
+    return []string{"TOADDRESS", "COMPLETED", "ERROR", "TIMEOUT", "INPROGRESS", "PLANNED", "RESOLVEDBY3RDPARTY", "RESOLVEDTHROUGHALTERNATEMITIGATION", "RISKACCEPTED", "UNKNOWNFUTUREVALUE"}[i]
+}
+func ParseManagementTemplateDeploymentStatus(v string) (interface{}, error) {
+    result := TOADDRESS_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+    switch strings.ToUpper(v) {
+        case "TOADDRESS":
+            result = TOADDRESS_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "COMPLETED":
+            result = COMPLETED_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "ERROR":
+            result = ERROR_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "TIMEOUT":
+            result = TIMEOUT_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "INPROGRESS":
+            result = INPROGRESS_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "PLANNED":
+            result = PLANNED_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "RESOLVEDBY3RDPARTY":
+            result = RESOLVEDBY3RDPARTY_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "RESOLVEDTHROUGHALTERNATEMITIGATION":
+            result = RESOLVEDTHROUGHALTERNATEMITIGATION_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "RISKACCEPTED":
+            result = RISKACCEPTED_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        case "UNKNOWNFUTUREVALUE":
+            result = UNKNOWNFUTUREVALUE_MANAGEMENTTEMPLATEDEPLOYMENTSTATUS
+        default:
+            return 0, errors.New("Unknown ManagementTemplateDeploymentStatus value: " + v)
+    }
+    return &result, nil
+}
+func SerializeManagementTemplateDeploymentStatus(values []ManagementTemplateDeploymentStatus) []string {
+    result := make([]string, len(values))
+    for i, v := range values {
+        result[i] = v.String()
+    }
+    return result
+}
