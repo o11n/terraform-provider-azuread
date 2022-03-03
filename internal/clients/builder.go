@@ -20,6 +20,7 @@ type ClientBuilder struct {
 func (b *ClientBuilder) Build(ctx context.Context) (*Client, error) {
 	// client declarations:
 	client := Client{
+		AuthConfig:       b.AuthConfig,
 		TenantID:         b.AuthConfig.TenantID,
 		ClientID:         b.AuthConfig.ClientID,
 		TerraformVersion: b.TerraformVersion,

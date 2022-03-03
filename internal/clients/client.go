@@ -8,6 +8,7 @@ import (
 
 	"github.com/manicminer/hamilton/auth"
 	"github.com/manicminer/hamilton/environments"
+	a "github.com/microsoft/kiota/authentication/go/azure"
 
 	"github.com/hashicorp/terraform-provider-azuread/internal/common"
 	administrativeunits "github.com/hashicorp/terraform-provider-azuread/internal/services/administrativeunits/client"
@@ -20,10 +21,14 @@ import (
 	invitations "github.com/hashicorp/terraform-provider-azuread/internal/services/invitations/client"
 	serviceprincipals "github.com/hashicorp/terraform-provider-azuread/internal/services/serviceprincipals/client"
 	users "github.com/hashicorp/terraform-provider-azuread/internal/services/users/client"
+
+	azidentity "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	msgraphsdk "github.com/microsoftgraph/msgraph-beta-sdk-go"
 )
 
 // Client contains the handles to all the specific Azure AD resource classes' respective clients
 type Client struct {
+	AuthConfig  *auth.Config
 	Environment environments.Environment
 	TenantID    string
 	ClientID    string
@@ -43,6 +48,8 @@ type Client struct {
 	Invitations         *invitations.Client
 	ServicePrincipals   *serviceprincipals.Client
 	Users               *users.Client
+
+	MSGraph *msgraphsdk.GraphServiceClient
 }
 
 func (client *Client) build(ctx context.Context, o *common.ClientOptions) error {
@@ -83,6 +90,29 @@ func (client *Client) build(ctx context.Context, o *common.ClientOptions) error 
 	if client.Claims.ObjectId == "" {
 		return fmt.Errorf("parsing claims in access token: oid claim is empty")
 	}
+
+	// Microsoft Graph SDK
+	cred, err := azidentity.NewClientSecretCredential(
+		client.AuthConfig.TenantID,
+		client.AuthConfig.ClientID,
+		client.AuthConfig.ClientSecret,
+		nil,
+	)
+	if err != nil {
+		return fmt.Errorf("unable to create Microsoft Graph SDK credential: %w", err)
+	}
+
+	auth, err := a.NewAzureIdentityAuthenticationProvider(cred)
+	if err != nil {
+		return fmt.Errorf("unable to create Azure AD authentication provider: %w", err)
+	}
+
+	adapter, err := msgraphsdk.NewGraphRequestAdapter(auth)
+	if err != nil {
+		return fmt.Errorf("unable to create Azure AD request adapter: %w", err)
+	}
+
+	client.MSGraph = msgraphsdk.NewGraphServiceClient(adapter)
 
 	return nil
 }
